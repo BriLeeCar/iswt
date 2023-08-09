@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model districts {
+  id       Int     @id @default(autoincrement())
+  county   String  @db.VarChar(12)
+  district String  @db.VarChar(32)
+  members  Boolean
+}
+
+model meetings {
+  id         Int      @id @default(autoincrement())
+  districtID Int
+  meeting    DateTime @db.DateTime(0)
+}
